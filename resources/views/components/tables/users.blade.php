@@ -2,21 +2,20 @@
     <table class="table mt-2">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">name</th>
-                <th scope="col">email</th>
-                <th scope="col">login at</th>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Login at</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($users ?? [] as $user)
-            <tr>
-                <th scope="row">{{ $user->id }}</th>
-                <td>{{ $user->name }}</td>
-                <td>{{ $user->email }}</td>
-                <td>{{ $user->created_at
-                 }}</td>
-            </tr>
+            @foreach ($users as $user)
+                <tr>
+                    <td>{{ $user->id }}</td>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td>{{ $user->created_at }}</td>
+                </tr>
             @endforeach
         </tbody>
     </table>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [UserController::class, 'showUser'])->name("user.show");
+
+Route::controller(AuthController::class)->group(function(){
+    Route::get("/register", "register")->name("user.register");
+    Route::get("/login", "login")->name("user.login");
+});
