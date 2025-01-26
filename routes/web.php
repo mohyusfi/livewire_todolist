@@ -15,9 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [UserController::class, 'showUser'])->name("user.show");
+Route::get('/', [UserController::class, 'showUser'])->name("user.show")->middleware('auth');
 
 Route::controller(AuthController::class)->group(function(){
-    Route::get("/register", "register")->name("user.register");
-    Route::get("/login", "login")->name("user.login");
+
+    Route::get("/register", "register")->name("user.register")->middleware('OnlyGuest');
+    Route::get("/login", "login")->name("login")->middleware('OnlyGuest');
+
+    Route::get("/logout", "logout")->name("logout")->middleware('auth');
 });

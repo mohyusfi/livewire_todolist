@@ -17,7 +17,7 @@ class Register extends Component
     {
         $validated = $this->validate([
             "name" => "required|string|max:50",
-            "email" => "required|email|max:50",
+            "email" => "required|email|max:50|unique:users,email",
             "password" => "required|min:7|max:10|confirmed"
         ]);
 

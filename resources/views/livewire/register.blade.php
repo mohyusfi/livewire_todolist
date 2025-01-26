@@ -45,7 +45,7 @@
         <!-- Submit Button -->
         <div class="d-flex align-items-center justify-content-between">
             <button class="btn btn-primary mt-2 px-3" type="submit">Submit</button>
-            <a href="{{ route('user.login') }}" class="ms-2 float-end">already have account?</a>
+            <a href="{{ route('login') }}" class="ms-2 float-end">already have account?</a>
         </div>
     </form>
 </div>

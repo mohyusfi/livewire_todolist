@@ -2,7 +2,9 @@
 
 namespace App\Livewire;
 
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
@@ -12,7 +14,7 @@ class Login extends Component
     public string $email;
     public string $password;
 
-    public function login(): RedirectResponse|bool
+    public function login(): RedirectResponse|bool|Redirector
     {
         $validated = $this->validate([
             "email" => "email|required|string",
@@ -20,9 +22,10 @@ class Login extends Component
         ]);
 
         if (Auth::attempt($validated)) {
-            Session::put("users", $validated);
-            return response()->redirectToIntended('/users');
+            return redirect()->intended('/');
         }
+
+        $this->addError("failed", "ensure password/email is correct");
 
         return false;
     }

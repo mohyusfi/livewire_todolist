@@ -9,9 +9,10 @@
     @livewireStyles
 </head>
 <body>
+    <h1 class="ms-5 mt-3">Logged as <span class="fs-4 fst-italic text-decoration-underline text-info">{{ Auth::user()->name }}</span></h1>
     @livewire("show-user", $users);
+    <h2 class="ms-5"><a href="{{ route("logout") }}">Logout</a></h2>
 
-    
     @livewireScripts
 </body>
 </html>
