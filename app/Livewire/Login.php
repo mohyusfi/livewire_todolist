@@ -22,7 +22,7 @@ class Login extends Component
         ]);
 
         if (Auth::attempt($validated)) {
-            return redirect()->intended('/');
+            return redirect("/");
         }
 
         $this->addError("failed", "ensure password/email is correct");
