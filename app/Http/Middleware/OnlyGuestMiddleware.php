@@ -18,7 +18,6 @@ class OnlyGuestMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::guest()) {
-            // echo "success access middleware";
             return $next($request);
         }
         return redirect('/');

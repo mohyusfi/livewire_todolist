@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TodolistController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +19,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [UserController::class, 'showUser'])->name("user.show")->middleware('auth');
 
 Route::controller(AuthController::class)->group(function(){
-
     Route::get("/register", "register")->name("user.register")->middleware('OnlyGuest');
     Route::get("/login", "login")->name("login")->middleware('OnlyGuest');
-
     Route::get("/logout", "logout")->name("logout")->middleware('auth');
+});
+
+Route::controller(TodolistController::class)->group(function(){
+    Route::get("/todolist", "showTodolist")->name('todo.show')->middleware('auth');
 });

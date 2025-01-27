@@ -11,6 +11,7 @@ use Tests\TestCase;
 
 class LoginTest extends TestCase
 {
+    use RefreshDatabase;
     /** @test */
     public function component_exists_on_page(): void
     {
@@ -51,7 +52,7 @@ class LoginTest extends TestCase
         $user = User::factory()->create([
             'name' => "anas",
             'email' => 'anas@gmail.com',
-            'password' => bcrypt('12345678'), // Pastikan password terenkripsi
+            'password' => bcrypt('12345678'),
         ]);
 
         Livewire::test(Login::class)
@@ -66,12 +67,12 @@ class LoginTest extends TestCase
         $user = User::factory()->create([
             'name' => "anas",
             'email' => 'anas@gmail.com',
-            'password' => bcrypt('1234567'), // Pastikan password terenkripsi
+            'password' => "12345678",
         ]);
 
         Livewire::test(Login::class)
             ->set("email", "anas@gmail.com")
-            ->set("password", "12345678")
+            ->set("password", "1234567")
             ->call("login")
             ->assertHasErrors(["failed"])
             ->assertReturned(false);

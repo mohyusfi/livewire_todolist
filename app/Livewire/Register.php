@@ -26,6 +26,7 @@ class Register extends Component
             return response()->redirectTo("/login");
         }
 
+
         return false;
     }
     public function render()
