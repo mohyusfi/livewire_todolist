@@ -4,6 +4,9 @@
     </div>
     <form wire:submit.prevent="addTodo" class="bg-body-secondary p-3 rounded-bottom-3">
         <input type="text" name="todo" id="todo" class="form-control" wire:model='todo'>
+        @error("todo")
+            <x-error-message :message="$message"/>
+        @enderror
         <button class="btn btn-primary mt-2 w-100">ADD</button>
     </form>
 </div>

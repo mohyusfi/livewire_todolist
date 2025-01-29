@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Todolist extends Model
 {
     use HasFactory;
-
+    protected $table = "todolists";
     protected $fillable = [
         "todo",
         "user_id"

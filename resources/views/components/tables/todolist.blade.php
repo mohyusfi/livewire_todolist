@@ -1,20 +1,29 @@
-<div class="w-100 p-5">
+<div class="w-100 p-5" wire:poll.60s>
     <table class="table">
         <thead>
             <tr>
                 <th>#</th>
-                <th>todo</th>
-                <th>created_at</th>
-                <th>update_at</th>
+                <th>Todo</th>
+                <th>Upload At</th>
+                <th>Update At</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>Belajar Livewire</td>
-                <td>1 month ago</td>
-                <td>1 second ago</td>
-            </tr>
+            @foreach ($todolists as $todolist)
+                <tr>
+                    <td>{{ $todolist->id }}</td>
+                    <td>{{ $todolist->todo }}</td>
+                    <td>{{ $todolist->created_at->diffForHumans() }}</td>
+                    <td>{{ $todolist->updated_at->diffForHumans() }}</td>
+                    <td class="d-flex justify-content-around">
+                        <button class="btn btn-danger" wire:click="delete({{ $todolist->id }})">delete</button>
+                        <input type="checkbox" value="{{ $todolist->id }}" wire:model.live="id" class="form-check-input">
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
+    <div>
+        {{ $todolists->links('vendor.livewire.bootstrap', data: ['scrollTo' => false]) }}
+    </div>
 </div>

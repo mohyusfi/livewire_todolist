@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class TodolistController extends Controller
 {
-    private ?TodolistService $todolistService = null;
+    private TodolistService $todolistService;
 
     public function __construct(TodolistService $todolistService)
     {
@@ -17,8 +17,7 @@ class TodolistController extends Controller
 
     public function showTodolist() : View {
         return view('todolist.show-todolist', [
-            "title" => "Todolist",
-            "data" => $this->todolistService->add()
+            "title" => "Todolist"
         ]);
     }
 }

@@ -8,7 +8,7 @@
     @vite(['resources/js/app.js', 'resources/css/app.css'])
 </head>
 <body>
-    @livewire('todolist')
+    @livewire('todolist-livewire')
     @livewireScripts
 </body>
 </html>
