@@ -17,8 +17,10 @@ class TodolistLivewire extends Component
 {
     use WithPagination, WithoutUrlPagination;
     // protected $paginationTheme = 'bootstrap';
-    public string $id;
+    public int $id;
+    public array $updateId = [];
     public string $todo;
+    public string $newTodo;
     public function addTodo(TodolistService $todolistService): void
     {
         $result = $this->validate([
@@ -34,6 +36,23 @@ class TodolistLivewire extends Component
         }
 
     }
+
+    public function updateTodo(TodolistService $todolistService): void
+    {
+        $result = $this->validate([
+            "updateId" => "required|min:1|max:5",
+            "newTodo" => "required|string"
+        ]);
+
+        $update = $todolistService->update($result["newTodo"], $result["updateId"]);
+
+        if (!$update) {
+            Session::flash("success","gagal update data");
+        }
+
+        Session::flash("success","success update data");
+    }
+
     public function delete(int $id, TodolistService $todolistService)
     {
         if ($id !== null) {

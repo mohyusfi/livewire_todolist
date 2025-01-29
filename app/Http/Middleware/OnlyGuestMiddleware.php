@@ -20,6 +20,6 @@ class OnlyGuestMiddleware
         if (Auth::guest()) {
             return $next($request);
         }
-        return redirect('/');
+        return redirect('/todolist');
     }
 }

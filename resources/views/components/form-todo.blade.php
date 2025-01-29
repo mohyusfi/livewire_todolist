@@ -1,4 +1,4 @@
-<div class="col-3">
+<div class="col-12">
     <div class="card card-header">
         <h3 class="text-center">ADD TODO</h3>
     </div>

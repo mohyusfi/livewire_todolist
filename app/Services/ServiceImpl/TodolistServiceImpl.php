@@ -6,7 +6,8 @@ use App\Models\Todolist;
 use App\Services\TodolistService;
 use Illuminate\Database\Eloquent\Collection;
 
-class TodolistServiceImpl implements TodolistService {
+class TodolistServiceImpl implements TodolistService
+{
     public function create(string $todo, int $user_id): Todolist
     {
         return Todolist::create([
@@ -15,9 +16,13 @@ class TodolistServiceImpl implements TodolistService {
         ]);
     }
 
-    public function update(string $todo, int $id): bool
+    public function update(string $todo, array $id): bool
     {
-        return Todolist::where("id", $id)->update(["todo" => $todo]);
+        if (Todolist::whereIn("id", $id)->get()) {
+            return Todolist::whereIn("id", $id)->update(["todo" => $todo]);
+        }
+
+        return false;
     }
 
     public function delete(int $id): bool

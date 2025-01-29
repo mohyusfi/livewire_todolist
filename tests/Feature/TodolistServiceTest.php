@@ -50,7 +50,7 @@ class TodolistServiceTest extends TestCase
         $todolistService = $this->app->make(TodolistService::class);
         $todolist = Todolist::factory()->create();
 
-        $isSuccess = $todolistService->update("Belajar Livewire", $todolist->id);
+        $isSuccess = $todolistService->update("Belajar Livewire", [$todolist->id]);
         $todolist = Todolist::find($todolist->id);
         self::assertTrue($isSuccess);
         self::assertEquals("Belajar Livewire", $todolist->todo);

@@ -17,7 +17,7 @@
                     <td>{{ $todolist->updated_at->diffForHumans() }}</td>
                     <td class="d-flex justify-content-around">
                         <button class="btn btn-danger" wire:click="delete({{ $todolist->id }})">delete</button>
-                        <input type="checkbox" value="{{ $todolist->id }}" wire:model.live="id" class="form-check-input">
+                        <input type="checkbox"  value="{{ $todolist->id }}" wire:model.live="updateId" class="form-check-input ms-3">
                     </td>
                 </tr>
             @endforeach

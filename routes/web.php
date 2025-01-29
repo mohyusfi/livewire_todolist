@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [UserController::class, 'showUser'])->name("user.show")->middleware('auth');
+Route::get('/', [UserController::class, 'showUser'])->name("user.show")->middleware('OnlyGuest');
 
 Route::controller(AuthController::class)->group(function(){
     Route::get("/register", "register")->name("user.register")->middleware('OnlyGuest');
