@@ -2,7 +2,7 @@
     <div class="card card-header">
         <h3 class="text-center">UPDATE TODO</h3>
     </div>
-    <form wire:submit.prevent="updateTodo" class="bg-body-secondary p-3 rounded-bottom-3">
+    <form wire:submit.prevent="updateTodo" class="bg-body-secondary p-3 rounded-bottom-3" style="height: 10em">
         @error("updateId")
             <x-error-message :message="$message"/>
         @enderror

@@ -4,6 +4,7 @@ namespace App\Services\ServiceImpl;
 
 use App\Models\Todolist;
 use App\Services\TodolistService;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 
 class TodolistServiceImpl implements TodolistService
@@ -30,8 +31,13 @@ class TodolistServiceImpl implements TodolistService
         return Todolist::find($id)->delete();
     }
 
-    public function search(string $todo): array|Collection
+    public function search(string $input): LengthAwarePaginator
     {
-        return Todolist::where("todo", "LIKE", "%$todo%")->get();
+        $result = $input;
+        return Todolist::where("id", "LIKE", "%$result")
+                        ->orWhere("todo", "LIKE", "%$result%")
+                        ->orWhere("created_at", "LIKE", "%$result%")
+                        ->orWhere("updated_at", "LIKE", "%$result%")
+                        ->paginate(5);
     }
 }
