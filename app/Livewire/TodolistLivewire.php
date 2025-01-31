@@ -37,7 +37,6 @@ class TodolistLivewire extends Component
         }
 
         $this->reset("todo");
-
     }
 
     public function updateTodo(TodolistService $todolistService): void
@@ -66,19 +65,10 @@ class TodolistLivewire extends Component
         }
     }
 
-    public function search(string $input): LengthAwarePaginator
+    public function render(TodolistService $todolistService)
     {
-        $result = $input;
-        return Todolist::where("id", "LIKE", "%$result")
-                        ->orWhere("todo", "LIKE", "%$result%")
-                        ->orWhere("created_at", "LIKE", "%$result%")
-                        ->orWhere("updated_at", "LIKE", "%$result%")
-                        ->paginate(5);
-    }
+        $search_data = $todolistService->search($this->input);
 
-    public function render()
-    {
-        $search_data = $this->search($this->input);
         return view('livewire.todolist-livewire', [
             "todolistss" => $search_data->isNotEmpty() ? $search_data : Todolist::paginate(5)
         ]);

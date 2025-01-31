@@ -1,7 +1,7 @@
 <div class="w-100 p-5" wire:poll.60s>
     <form>
         <label for="search" class="fw-bold fst-italic">Search Todo</label>
-        <input type="text" name="search" id="search" class="form-control my-2" wire:model.live.debounce.1000ms='input' placeholder="Cari todo anda">
+        <input type="text" name="search" id="search" class="form-control my-2" wire:model.live.debounce.500ms='input' placeholder="Cari todo anda">
     </form>
     <table class="table">
         <thead>
